@@ -1,0 +1,84 @@
+body{
+    font-size: 1.3em;
+}
+
+.center{
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+    margin: 10px 10px 10px 10px;
+}
+
+.tabs{
+    padding: 0;
+}
+
+.tab{
+    list-style: none;
+    padding: 5px 10px 10px 8px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    float: left;
+    border: 1px solid black;
+    border-bottom: none;
+}
+
+.tab:hover{
+    background: #eeeeee;
+    cursor: pointer;
+}
+
+
+
+.tab > a{
+    text-decoration: none;
+    color: black;
+}
+
+.tab > a:hover{
+    color: black;
+}
+
+.events-table{
+    width: 100%;
+    border: 1px solid black;
+}
+
+.events-table th{
+    background: #dddddd;
+    border-bottom: 1px solid black;
+}
+
+.events-table th, .events-table td{
+    border-right: 1px solid black;
+}
+
+.events-table th, .events-table td{
+    padding: 5px;
+}
+
+.events-table tr:nth-child(even) {
+    background-color: #eee;
+}
+
+button{
+    border: 1px solid black;
+    background: #fff;
+    padding: 2px 17px;
+    margin-left: 0px;
+    font-weight: 800;
+}
+
+button:hover{
+    background: #eee;
+}
+
+#add-btn{
+  margin-top: 20px;
+}
+
+
+
