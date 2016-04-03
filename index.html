@@ -9,20 +9,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body ng-app = "eventApp">
-        <div class = "container">
+        <div class = "container" ng-controller="TabController as tabCtrl">
              <div class = "center" ng-controller="EventsController as eventsCtrl">
                 <ul class = "tabs">
-                    <li class = "tab">
+                    <li class = "tab" ng-class="{'active':tabCtrl.isTab(1)}" ng-click="tabCtrl.setTab(1)">
                         <a> All Events</a>
                     </li>
-                    <li class = "tab">
+                    <li class = "tab" ng-class="{'active':tabCtrl.isTab(2)}" ng-click="tabCtrl.setTab(2)">
                         <a> Upcoming Events</a>
                     </li>
-                    <li class = "tab">
+                    <li class = "tab" ng-class="{'active':tabCtrl.isTab(3)}" ng-click="tabCtrl.setTab(3)">
                         <a> Local Events</a>
                     </li>
                 </ul>
-                 <table class="events-table">
+                 <!--Tab1-->
+                 <table ng-show="tabCtrl.isTab(1)" class="events-table">
                     <tr class="events-table-header">
                         <th>Event Name</th>
                         <th>Date</th> 
@@ -40,7 +41,47 @@
                         <td class="edit-button">remove/edit</td>
                     </tr>
                 </table>
-                <button id="add-btn"> Add Event </button>
+                <!--Tab 2-->
+                 <table ng-show="tabCtrl.isTab(2)" class="events-table">
+                    <tr class="events-table-header">
+                        <th>Event Name</th>
+                        <th>Date</th> 
+                        <th>Venue</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="event in eventsCtrl.events | filter: dateFilter()">
+                        <td>{{event.name}}</td>
+                        <td>{{event.date | date: 'MMM d ha'}}</td> 
+                        <td>{{event.venue.name}}</td>
+                        <td>{{event.venue.city}}</td>
+                        <td>{{event.venue.state}}</td> 
+                        <td class="edit-button">remove/edit</td>
+                    </tr>
+                </table>
+                <!--Tab 3-->
+                 <table ng-show="tabCtrl.isTab(3)" class="events-table">
+                    <tr class="events-table-header">
+                        <th>Event Name</th>
+                        <th>Date</th> 
+                        <th>Venue</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="event in eventsCtrl.events | filter: event.state = 'IL'">
+                        <td>{{event.name}}</td>
+                        <td>{{event.date | date: 'MMM d ha'}}</td> 
+                        <td>{{event.venue.name}}</td>
+                        <td>{{event.venue.city}}</td>
+                        <td>{{event.venue.state}}</td> 
+                        <td class="edit-button">remove/edit</td>
+                    </tr>
+                </table>
+                <div ng-controller = "AddEventController">
+                    <button id="add-btn"> Add Event </button>
+                </div>
             </div>
         </div>
         <script src="js/event-service.js"></script>

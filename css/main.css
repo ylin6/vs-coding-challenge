@@ -3,7 +3,7 @@ body{
 }
 
 .center{
-    width:700px;
+    width:800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -46,7 +46,11 @@ body{
 .events-table{
     width: 100%;
     border: 1px solid black;
-    table-layout: fixed;
+    table-layout: auto;
+}
+
+.active{
+    background: #dddddd;
 }
 
 .events-table th{
@@ -85,6 +89,12 @@ button:hover{
 #add-btn{
   margin-top: 20px;
 }
+
+.edit-button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+    
 
 
 
