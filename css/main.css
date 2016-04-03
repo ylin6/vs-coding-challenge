@@ -3,13 +3,14 @@ body{
 }
 
 .center{
-    width:600px;
+    width:700px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .container{
     margin: 10px 10px 10px 10px;
+    width: 100%;
 }
 
 .tabs{
@@ -45,11 +46,16 @@ body{
 .events-table{
     width: 100%;
     border: 1px solid black;
+    table-layout: fixed;
 }
 
 .events-table th{
     background: #dddddd;
     border-bottom: 1px solid black;
+}
+
+.events-tabe tr{
+    border-bottom: none;
 }
 
 .events-table th, .events-table td{
@@ -60,7 +66,7 @@ body{
     padding: 5px;
 }
 
-.events-table tr:nth-child(even) {
+.events-table tbody tr:nth-child(even) {
     background-color: #eee;
 }
 

@@ -2,14 +2,15 @@
 <html lang="en-US">
     <head>
 	   <title> Buy and Sell Tickets: Concerts, Sports, & Theatre | Vivid Seats </title>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <link rel="stylesheet" href="./css/normalize.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	   <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/main.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body ng-app = "eventApp">
         <div class = "container">
-             <div class = "center">
+             <div class = "center" ng-controller="EventsController as eventsCtrl">
                 <ul class = "tabs">
                     <li class = "tab">
                         <a> All Events</a>
@@ -30,25 +31,19 @@
                         <th>State</th>
                         <th>Action</th>
                     </tr>
-                    <tr>
-                        <td>Concert</td>
-                        <td>Feb 6th 7PM</td> 
-                        <td>Soldier Field</td>
-                        <td>Chicago</td>
-                        <td>IL</td> 
-                        <td class="edit-button">remove/edit</td>
-                    </tr>
-                    <tr>
-                        <td>Concert</td>
-                        <td>Feb 6th 7PM</td> 
-                        <td>Soldier Field</td>
-                        <td>Chicago</td>
-                        <td>IL</td> 
+                    <tr ng-repeat="event in eventsCtrl.events">
+                        <td>{{event.name}}</td>
+                        <td>{{event.date | date: 'MMM d ha'}}</td> 
+                        <td>{{event.venue.name}}</td>
+                        <td>{{event.venue.city}}</td>
+                        <td>{{event.venue.state}}</td> 
                         <td class="edit-button">remove/edit</td>
                     </tr>
                 </table>
                 <button id="add-btn"> Add Event </button>
             </div>
         </div>
+        <script src="js/event-service.js"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>
