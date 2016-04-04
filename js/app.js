@@ -24,7 +24,6 @@
                     largestID = instance.events[i]["id"];
                 }
             }
-            
             return largestID;
         }
         
