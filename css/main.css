@@ -94,7 +94,15 @@ button:hover{
     text-decoration: underline;
     cursor: pointer;
 }
-    
+
+.modal-content{
+    border-radius: 0;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
 
 
 

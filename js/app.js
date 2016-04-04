@@ -6,14 +6,31 @@
         var instance = this;
         instance.events = [];
         
+        // Helper Functions
+        instance.getAll = function(){
+            VividSeats.eventService.all(function(e){
+                instance.events = e;
+                // Apply updates
+                $scope.$apply();
+            }, function(e){
+                alert(e)
+            });
+        }
+        
+        // Get Largest ID
+        instance.getLargestID = function(){
+            var largestID = 0;
+            for(i = 0; i < instance.events.length; i++){
+                if(instance.events[i]["id"] > largestID){
+                    largestID = instance.events[i]["id"];
+                }
+            }
+            
+            return largestID;
+        }
+        
         // Get Events from API
-        VividSeats.eventService.all(function(e){
-            instance.events = e;
-            // Apply updates
-            $scope.$apply();
-        }, function(e){
-            alert(e)
-        });
+        instance.getAll();
         
         // Date Filter
         $scope.dateFilter = function () {
@@ -22,12 +39,13 @@
                     return false;
                 }
                 
-                var itemDate = moment(item['date']);
-                var today = new Day();
-                var nextMonth = today.setDate(today.getDate() + 30)
-                var start = moment( today, "YYYY-MM-DD");
-                var end = moment( nextMonth, "YYYY-MM-DD");
- 
+                var itemDate = moment(item['date']).format();
+                var today = new Date();
+                var nextMonth = today.setDate(today.getDate() + 30);
+                today = new Date();
+                var start = moment( today).format();
+                var end = moment( nextMonth).format(); 
+
                 if (itemDate >= start && itemDate <= end){
                     return true;
                 }
@@ -37,6 +55,36 @@
             }
         }
         
+        // Add New Event
+        // Show Bootstrap Modal
+        instance.showModal = function(){
+            $("#add-Event-Modal").modal("show");
+        }
+        
+        // Add Event to API
+        instance.newEvent = {};
+        instance.addNewEvent = function(){
+            instance.newEvent["date"] = moment($('#add-event-date').val() + ' ' + $('#add-event-time').val()).format();
+            instance.newEvent["id"] = instance.getLargestID() + 1;
+            VividSeats.eventService.add(instance.newEvent, function(){
+                // Get New List
+                instance.getAll();
+                
+                // Close Modal
+                $("#add-Event-Modal").modal("hide");
+                
+                // Clear Event
+                instance.newEvent = {};
+            }, function(e){
+                alert(e);
+            });
+            instance.event = {};
+        }
+        
+        // Remove Event
+        
+        
+        // Edit Event
         
     }]);
     
@@ -56,5 +104,4 @@
             return (instance.tab == t)
         }
     });
-    
 })();
