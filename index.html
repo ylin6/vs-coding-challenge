@@ -38,7 +38,7 @@
                         <td>{{event.venue.name}}</td>
                         <td>{{event.venue.city}}</td>
                         <td>{{event.venue.state}}</td> 
-                        <td class="edit-button">remove/edit</td>
+                        <td class="edit-button" ng-click="eventsCtrl.showEditEventModal(event)">remove/edit</td>
                     </tr>
                 </table>
                 <!--Tab 2-->
@@ -57,7 +57,7 @@
                         <td>{{event.venue.name}}</td>
                         <td>{{event.venue.city}}</td>
                         <td>{{event.venue.state}}</td> 
-                        <td class="edit-button">remove/edit</td>
+                        <td class="edit-button" ng-click = "eventsCtrl.showEditEventModal(event)">remove/edit</td>
                     </tr>
                 </table>
                 <!--Tab 3-->
@@ -76,10 +76,10 @@
                         <td>{{event.venue.name}}</td>
                         <td>{{event.venue.city}}</td>
                         <td>{{event.venue.state}}</td> 
-                        <td class="edit-button">remove/edit</td>
+                        <td class="edit-button" ng-click = "eventsCtrl.showEditEventModal(event)">remove/edit</td>
                     </tr>
                 </table>
-                <button id="add-btn" ng-click="eventsCtrl.showModal()"> Add Event </button>
+                <button id="add-btn" ng-click="eventsCtrl.showAddEventModal()"> Add Event </button>
                 <div class="modal fade" id="add-Event-Modal">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -154,6 +154,84 @@
                       <div class="modal-footer">
                         <button type="button" data-dismiss="modal">Close</button>
                         <button type="button" ng-click = "eventsCtrl.addNewEvent()">Add Event</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="edit-Event-Modal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"> Edit/Remove Event</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form name="edit-event-form">
+                            <p> Event Information</p>
+                            <input placeholder="Event Name" id="edit-event-name" ng-model = "eventsCtrl.editedEvent.name">
+                            <input placeholder="Date" type="date" id="edit-event-date">
+                            <input placeholder="Time" type="time" id="edit-event-time">
+                            <p> Venue Information</p>
+                            <input placeholder="Venue Name" id="edit-venue-name" ng-model = "eventsCtrl.editedEvent.venue.name">
+                            <input placeholder="Venue City" id="edit-venue-city" ng-model = "eventsCtrl.editedEvent.venue.city">
+                            <select name="state" size="1" id="edit-venue-state" ng-model = "eventsCtrl.editedEvent.venue.state">
+                                  <option value="AK">AK</option>
+                                  <option value="AL">AL</option>
+                                  <option value="AR">AR</option>
+                                  <option value="AZ">AZ</option>
+                                  <option value="CA">CA</option>
+                                  <option value="CO">CO</option>
+                                  <option value="CT">CT</option>
+                                  <option value="DC">DC</option>
+                                  <option value="DE">DE</option>
+                                  <option value="FL">FL</option>
+                                  <option value="GA">GA</option>
+                                  <option value="HI">HI</option>
+                                  <option value="IA">IA</option>
+                                  <option value="ID">ID</option>
+                                  <option value="IL" selected="selected">IL</option>
+                                  <option value="IN">IN</option>
+                                  <option value="KS">KS</option>
+                                  <option value="KY">KY</option>
+                                  <option value="LA">LA</option>
+                                  <option value="MA">MA</option>
+                                  <option value="MD">MD</option>
+                                  <option value="ME">ME</option>
+                                  <option value="MI">MI</option>
+                                  <option value="MN">MN</option>
+                                  <option value="MO">MO</option>
+                                  <option value="MS">MS</option>
+                                  <option value="MT">MT</option>
+                                  <option value="NC">NC</option>
+                                  <option value="ND">ND</option>
+                                  <option value="NE">NE</option>
+                                  <option value="NH">NH</option>
+                                  <option value="NJ">NJ</option>
+                                  <option value="NM">NM</option>
+                                  <option value="NV">NV</option>
+                                  <option value="NY">NY</option>
+                                  <option value="OH">OH</option>
+                                  <option value="OK">OK</option>
+                                  <option value="OR">OR</option>
+                                  <option value="PA">PA</option>
+                                  <option value="RI">RI</option>
+                                  <option value="SC">SC</option>
+                                  <option value="SD">SD</option>
+                                  <option value="TN">TN</option>
+                                  <option value="TX">TX</option>
+                                  <option value="UT">UT</option>
+                                  <option value="VA">VA</option>
+                                  <option value="VT">VT</option>
+                                  <option value="WA">WA</option>
+                                  <option value="WI">WI</option>
+                                  <option value="WV">WV</option>
+                                  <option value="WY">WY</option>
+                            </select>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="danger" ng-click = "eventsCtrl.removeEvent()">Remove Event</button>
+                        <button type="button" ng-click = "eventsCtrl.editEvent()">Apply Changes</button>
                       </div>
                     </div>
                   </div>

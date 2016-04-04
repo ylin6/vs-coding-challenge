@@ -103,6 +103,11 @@ input{
     margin-bottom: 10px;
 }
 
+.danger{
+    background: #dd4433; 
+    color: #fff;
+}
+
 
 
 

@@ -1,6 +1,5 @@
 (function(){
     var app = angular.module('eventApp', []);
-    
     // Event Controller
     app.controller('EventsController', ['$scope', function($scope){
         var instance = this;
@@ -56,8 +55,9 @@
         }
         
         // Add New Event
-        // Show Bootstrap Modal
-        instance.showModal = function(){
+        
+        // Show Add New Event Bootstrap Modal
+        instance.showAddEventModal = function(){
             $("#add-Event-Modal").modal("show");
         }
         
@@ -81,10 +81,38 @@
             instance.event = {};
         }
         
-        // Remove Event
+        instance.editedEvent = {};
+        // Edit/Remove Event Modal
+        instance.showEditEventModal = function(selectedEvent){
+            instance.editedEvent = selectedEvent;
+            console.log(instance.editedEvent["date"]);
+            $('#edit-event-date').val( moment(instance.editedEvent["date"]).format('YYYY-MM-DD'));
+            $('#edit-event-time').val( moment(instance.editedEvent["date"]).format('HH:MM:SS'));
+            $("#edit-Event-Modal").modal("show");
+        }
         
+        // Remove Event
+        instance.removeEvent = function(){
+            VividSeats.eventService.remove(instance.editedEvent,function(){
+                instance.getAll();
+                instance.editedEvent = {};
+            }, function(e){
+                alert(e);
+            });
+            
+        }
         
         // Edit Event
+        instance.editEvent = function(){
+            VividSeats.eventService.update(instance.editedEvent,function(){
+                instance.getAll();
+                instance.editedEvent = {};
+            }, function(e){
+                alert(e);
+            });
+            
+        }
+        
         
     }]);
     
