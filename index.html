@@ -88,15 +88,15 @@
                         <h4 class="modal-title"> Add New Event</h4>
                       </div>
                       <div class="modal-body">
-                        <form name="add-event-form">
+                        <form name="addEventForm" ng-submit="addEventForm.$valid && eventsCtrl.addNewEvent()" novalidate>
                             <p> Event Information</p>
-                            <input placeholder="Event Name" ng-model="eventsCtrl.newEvent.name">
-                            <input placeholder="Date" type="date" id="add-event-date">
-                            <input placeholder="Time" type="time" id="add-event-time">
+                            <input placeholder="Event Name" ng-model="eventsCtrl.newEvent.name" required>
+                            <input placeholder="Date" type="date" id="add-event-date" required>
+                            <input placeholder="Time" type="time" id="add-event-time" required>
                             <p> Venue Information</p>
-                            <input placeholder="Venue Name" ng-model="eventsCtrl.newEvent.venue.name">
-                            <input placeholder="Venue City" ng-model="eventsCtrl.newEvent.venue.city">
-                            <select name="state" size="1" ng-model="eventsCtrl.newEvent.venue.state">
+                            <input placeholder="Venue Name" ng-model="eventsCtrl.newEvent.venue.name" required>
+                            <input placeholder="Venue City" ng-model="eventsCtrl.newEvent.venue.city" required>
+                            <select name="state" size="1" ng-model="eventsCtrl.newEvent.venue.state" required>
                                   <option value="AK">AK</option>
                                   <option value="AL">AL</option>
                                   <option value="AR">AR</option>
@@ -149,11 +149,11 @@
                                   <option value="WV">WV</option>
                                   <option value="WY">WY</option>
                             </select>
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal">Close</button>
+                                <button type="submit">Add Event</button>
+                            </div>
                         </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" data-dismiss="modal">Close</button>
-                        <button type="button" ng-click = "eventsCtrl.addNewEvent()">Add Event</button>
                       </div>
                     </div>
                   </div>
@@ -162,19 +162,19 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="eventsCtrl.revertModel()"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title"> Edit/Remove Event</h4>
                       </div>
                       <div class="modal-body">
-                        <form name="edit-event-form">
+                        <form name="editEventForm" ng-model-options = "{updateOn: 'submit'}" ng-submit="editEventForm.$valid && eventsCtrl.editEvent()" novalidate>
                             <p> Event Information</p>
-                            <input placeholder="Event Name" id="edit-event-name" ng-model = "eventsCtrl.editedEvent.name">
-                            <input placeholder="Date" type="date" id="edit-event-date">
-                            <input placeholder="Time" type="time" id="edit-event-time">
+                            <input placeholder="Event Name" id="edit-event-name" ng-model = "eventsCtrl.editedEvent.name" required>
+                            <input placeholder="Date" type="date" id="edit-event-date" required>
+                            <input placeholder="Time" type="time" id="edit-event-time" required>
                             <p> Venue Information</p>
-                            <input placeholder="Venue Name" id="edit-venue-name" ng-model = "eventsCtrl.editedEvent.venue.name">
-                            <input placeholder="Venue City" id="edit-venue-city" ng-model = "eventsCtrl.editedEvent.venue.city">
-                            <select name="state" size="1" id="edit-venue-state" ng-model = "eventsCtrl.editedEvent.venue.state">
+                            <input placeholder="Venue Name" id="edit-venue-name" ng-model = "eventsCtrl.editedEvent.venue.name" required>
+                            <input placeholder="Venue City" id="edit-venue-city" ng-model = "eventsCtrl.editedEvent.venue.city" required>
+                            <select name="state" size="1" id="edit-venue-state" ng-model = "eventsCtrl.editedEvent.venue.state" >
                                   <option value="AK">AK</option>
                                   <option value="AL">AL</option>
                                   <option value="AR">AR</option>
@@ -227,11 +227,11 @@
                                   <option value="WV">WV</option>
                                   <option value="WY">WY</option>
                             </select>
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal" class="danger" ng-click = "eventsCtrl.removeEvent()">Remove Event</button>
+                                <button type="submit">Apply Changes</button>
+                            </div>
                         </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="danger" ng-click = "eventsCtrl.removeEvent()">Remove Event</button>
-                        <button type="button" ng-click = "eventsCtrl.editEvent()">Apply Changes</button>
                       </div>
                     </div>
                   </div>

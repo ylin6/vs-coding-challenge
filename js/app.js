@@ -85,7 +85,6 @@
         // Edit/Remove Event Modal
         instance.showEditEventModal = function(selectedEvent){
             instance.editedEvent = selectedEvent;
-            console.log(instance.editedEvent["date"]);
             $('#edit-event-date').val( moment(instance.editedEvent["date"]).format('YYYY-MM-DD'));
             $('#edit-event-time').val( moment(instance.editedEvent["date"]).format('HH:MM:SS'));
             $("#edit-Event-Modal").modal("show");
@@ -107,13 +106,17 @@
             VividSeats.eventService.update(instance.editedEvent,function(){
                 instance.getAll();
                 instance.editedEvent = {};
+                $("#edit-Event-Modal").modal("hide");
+                console.log("Closed");
             }, function(e){
                 alert(e);
-            });
-            
+            });     
         }
         
-        
+        instance.revertModel = function(){
+            instance.editedEvent = {};
+        }
+                   
     }]);
     
     // Tabs Controller
